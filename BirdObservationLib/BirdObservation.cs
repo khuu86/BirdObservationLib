@@ -20,9 +20,9 @@
 
         public void ValidateHowMany()
         {
-            if (HowMany < 0)
+            if (HowMany <= 0)
             {
-                throw new ArgumentOutOfRangeException("HowMany must be at least 0");
+                throw new ArgumentOutOfRangeException("How many must be greater than 0");
             }
         }
 
