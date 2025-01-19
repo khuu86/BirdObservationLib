@@ -23,10 +23,20 @@ namespace BirdObservationLib
             };
         }
 
-            // returnerer en liste af alle BirdObservation-objekter
-            public List<BirdObservation> GetAll()
+        // returnerer en liste af alle BirdObservation-objekter
+        public List<BirdObservation> GetAll(int? minHowMany = null, string? species = null)
         {
-            return _observations;
+            // Copy Constructor
+            List<BirdObservation> result = new List<BirdObservation>(_observations);
+            if (minHowMany != null)
+            {
+                result = result.FindAll(o => o.HowMany >= minHowMany);
+            }
+            if (species != null)
+            {
+                result = result.FindAll(o => o.Species.Contains(species, StringComparison.OrdinalIgnoreCase));
+            }
+            return result;
         }
 
         // returnerer et BirdObservation-objekt med en bestemt Id
